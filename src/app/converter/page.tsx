@@ -25,19 +25,34 @@ export default function Converter() {
   }, []);
 
   return (
-    <Form action="/convert">
-      <CurrencySelect
-        labelText="De:"
-        currencies={currencys}
-        onChange={(val) => console.log(val)}
-      />
-      <CurrencySelect
-        labelText="Para:"
-        currencies={currencys}
-        onChange={(val) => console.log(val)}
-      />
-      <input name="money-value" />
-      <button type="submit">Converter</button>
-    </Form>
+    <div className="h-[100vh] flex items-center justify-center">
+      <Form
+        action="/convert"
+        className="bg-white rounded w-full max-w-[800px] p-4 flex flex-col gap-2 content-center"
+      >
+        <div className="flex flex-col gap-4">
+          <div>
+            <CurrencySelect
+              labelText="De:"
+              currencies={currencys}
+              onChange={(val) => console.log(val)}
+            />
+          </div>
+
+          <CurrencySelect
+            labelText="Para:"
+            currencies={currencys}
+            onChange={(val) => console.log(val)}
+          />
+        </div>
+        <input name="money-value" />
+        <button
+          className="bg-blue-500 text-white p-2 rounded hover:cursor-pointer border-2 border-white hover:bg-white hover:text-blue-500 hover:border-blue-500 hover:border-2 transition-colors"
+          type="submit"
+        >
+          Converter
+        </button>
+      </Form>
+    </div>
   );
 }
