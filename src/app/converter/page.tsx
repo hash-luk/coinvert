@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Form from "next/form";
 import { Currency } from "@/types/currency";
+import CurrencySelect from "./components/CurrencySelect";
 
 export default function Converter() {
   const [currencys, setCurrencys] = useState<Currency[]>([]);
@@ -25,20 +26,16 @@ export default function Converter() {
 
   return (
     <Form action="/convert">
-      <select name="from">
-        {currencys.map((currency, idx) => (
-          <option key={idx} value={currency.code}>
-            {currency.code}
-          </option>
-        ))}
-      </select>
-      <select name="to">
-        {currencys.map((currency, idx) => (
-          <option key={idx} value={currency.code}>
-            {currency.code}
-          </option>
-        ))}
-      </select>
+      <CurrencySelect
+        labelText="De:"
+        currencies={currencys}
+        onChange={(val) => console.log(val)}
+      />
+      <CurrencySelect
+        labelText="Para:"
+        currencies={currencys}
+        onChange={(val) => console.log(val)}
+      />
       <input name="money-value" />
       <button type="submit">Converter</button>
     </Form>
